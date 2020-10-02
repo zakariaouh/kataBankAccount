@@ -27,7 +27,7 @@ public class TransactionRepositoryTest {
 
     @Test
     public void transactionRepositoryShouldRecordTransaction() {
-        given(clock.currentDay()).willReturn(TODAY);
+        given(clock.currentDayAsString()).willReturn(TODAY);
 
         transactionRepository.recode(ANY_AMOUNT);
 

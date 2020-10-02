@@ -14,7 +14,7 @@ public class TransactionRepository {
     }
 
     public void recode(int amount) {
-        transactions.add(new Transaction(clock.currentDay(), amount));
+        transactions.add(new Transaction(clock.currentDayAsString(), amount));
     }
 
     public List<Transaction> getAllTransaction() {
