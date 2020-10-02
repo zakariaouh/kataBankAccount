@@ -6,8 +6,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import treatmenet.Account;
-import treatmenet.Console;
+import treatment.Account;
+import treatment.Console;
+import treatment.TransactionRepository;
 
 import static org.mockito.Mockito.inOrder;
 
@@ -20,7 +21,8 @@ public class PrintAccountStatementTest {
 
     @Before
     public void setUp() {
-        account = new Account();
+        TransactionRepository transactionRepository=new TransactionRepository();
+        account = new Account(transactionRepository);
     }
 
     @Test
