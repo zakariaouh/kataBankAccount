@@ -26,4 +26,11 @@ public class AccountTest {
         verify(transactionRepository).recode(ANY_AMOUNT);
 
     }
+
+    @Test
+    public void accountWithdrawShouldRecordATransactionWithTheMinusAmount() {
+        account.withdraw(ANY_AMOUNT);
+        verify(transactionRepository).recode(-ANY_AMOUNT);
+
+    }
 }
