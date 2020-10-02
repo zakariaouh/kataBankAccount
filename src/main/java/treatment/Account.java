@@ -4,10 +4,12 @@ public class Account {
 
 
     private TransactionRepository transactionRepository;
+    private StatmentPrinter statmentPrinter;
 
-    public Account(TransactionRepository transactionRepository) {
+    public Account(TransactionRepository transactionRepository, StatmentPrinter statmentPrinter) {
 
         this.transactionRepository = transactionRepository;
+        this.statmentPrinter = statmentPrinter;
     }
 
     public void deposit(int amount) {
@@ -20,6 +22,7 @@ public class Account {
     }
 
     public void printStatement() {
+        statmentPrinter.print(transactionRepository.getAllTransaction());
 
     }
 }
