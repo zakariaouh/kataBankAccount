@@ -18,12 +18,12 @@ public class AccountTest {
     @Mock
     TransactionRepository transactionRepository;
     @Mock
-    StatmentPrinter statmentPrinter;
+    StatementPrinter statementPrinter;
     private int ANY_AMOUNT = 500;
 
     @Before
     public void setUp() {
-        account = new Account(transactionRepository,statmentPrinter);
+        account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
@@ -41,11 +41,11 @@ public class AccountTest {
     }
 
     @Test
-    public void printStatmens() {
+    public void accountPrintStatementShouldCallThePrinterWithAllAccountTransactions() {
         List<Transaction> transactions = Collections.singletonList(new Transaction());
         given(transactionRepository.getAllTransaction()).willReturn(transactions);
         account.printStatement();
-        verify(statmentPrinter).print(transactions);
+        verify(statementPrinter).print(transactions);
 
     }
 }

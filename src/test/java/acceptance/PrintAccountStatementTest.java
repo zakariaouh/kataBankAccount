@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import treatment.Account;
 import treatment.Console;
-import treatment.StatmentPrinter;
+import treatment.StatementPrinter;
 import treatment.TransactionRepository;
 
 import static org.mockito.Mockito.inOrder;
@@ -23,8 +23,8 @@ public class PrintAccountStatementTest {
     @Before
     public void setUp() {
         TransactionRepository transactionRepository=new TransactionRepository();
-        StatmentPrinter statmentPrinter=new StatmentPrinter();
-        account = new Account(transactionRepository, statmentPrinter);
+        StatementPrinter statementPrinter =new StatementPrinter();
+        account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
