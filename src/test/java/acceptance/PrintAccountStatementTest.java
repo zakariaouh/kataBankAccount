@@ -22,7 +22,8 @@ public class PrintAccountStatementTest {
     @Before
     public void setUp() {
         TransactionRepository transactionRepository=new TransactionRepository(clock);
-        StatementPrinter statementPrinter =new StatementPrinter();
+        Console console=new Console();
+        StatementPrinter statementPrinter =new StatementPrinter(console);
         account = new Account(transactionRepository, statementPrinter);
     }
 
