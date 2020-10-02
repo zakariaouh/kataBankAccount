@@ -6,10 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import treatment.Account;
-import treatment.Console;
-import treatment.StatementPrinter;
-import treatment.TransactionRepository;
+import treatment.*;
 
 import static org.mockito.Mockito.inOrder;
 
@@ -18,18 +15,20 @@ public class PrintAccountStatementTest {
 
     @Mock
     Console console;
+    @Mock
+    Clock clock;
     private Account account;
 
     @Before
     public void setUp() {
-        TransactionRepository transactionRepository=new TransactionRepository();
+        TransactionRepository transactionRepository=new TransactionRepository(clock);
         StatementPrinter statementPrinter =new StatementPrinter();
         account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
     public void printingStatementIncludingDepositAndWithdrawal() {
-
+      //TODO given(clock.currentDay()).willReturn(a day)
         account.deposit(500);
         account.deposit(2000);
         account.withdraw(700);

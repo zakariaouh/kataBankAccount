@@ -42,7 +42,7 @@ public class AccountTest {
 
     @Test
     public void accountPrintStatementShouldCallThePrinterWithAllAccountTransactions() {
-        List<Transaction> transactions = Collections.singletonList(new Transaction());
+        List<Transaction> transactions = Collections.singletonList(new Transaction(null, 100));
         given(transactionRepository.getAllTransaction()).willReturn(transactions);
         account.printStatement();
         verify(statementPrinter).print(transactions);
