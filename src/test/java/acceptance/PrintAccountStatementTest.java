@@ -22,7 +22,6 @@ public class PrintAccountStatementTest {
     @Before
     public void setUp() {
         TransactionRepository transactionRepository=new TransactionRepository(clock);
-        Console console=new Console();
         StatementPrinter statementPrinter =new StatementPrinter(console);
         account = new Account(transactionRepository, statementPrinter);
     }
@@ -37,7 +36,7 @@ public class PrintAccountStatementTest {
 
         InOrder inorder = inOrder(console);
         inorder.verify(console).printLine("Date || Credit || Debit || Balance");
-        inorder.verify(console).printLine("15/01/2020 || 700.00 || 1800.00");
+        inorder.verify(console).printLine("15/01/2020 || || -700.00 || 1800.00");
         inorder.verify(console).printLine("10/01/2020 || 2000.00 || || 2500.00");
         inorder.verify(console).printLine("05/01/2020 || 500.00 || || 500.00");
 
