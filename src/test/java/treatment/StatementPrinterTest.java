@@ -41,7 +41,19 @@ public class StatementPrinterTest {
         verify(console).printLine("15/01/2020 || 700.00 || || 700.00");
     }
 
+    @Test
+    public void statementPrinterShouldPrintWithdrawTransactionInDebit() {
+        Transaction debit1 = new Transaction("15/01/2020", -700);
+        Transaction debit2 = new Transaction("15/01/2020", -700);
+        List<Transaction> transactions = Arrays.asList(debit1, debit2);
 
+        StatementPrinter statementPrinter = new StatementPrinter(console);
+        statementPrinter.print(transactions);
+
+        verify(console).printLine(HEADER);
+        verify(console).printLine("15/01/2020 || || -700.00 || -1400.00");
+        verify(console).printLine("15/01/2020 || || -700.00 || -700.00");
+    }
 
 
 }

@@ -16,11 +16,21 @@ public class StatementLine {
     }
 
     public String format() {
-
-        return transaction.date()
-                + " || "
-                + decimalFormatter.format(transaction.amount())
-                + " || || "
-                + decimalFormatter.format(balance);
+        String lineToPrint = "";
+        if (transaction.isDebit()) {
+            lineToPrint = transaction.date()
+                    + " || "
+                    + decimalFormatter.format(transaction.amount())
+                    + " || || "
+                    + decimalFormatter.format(balance);
+        }
+        if (transaction.isCredit()) {
+            lineToPrint = transaction.date()
+                    + " || || "
+                    + decimalFormatter.format(transaction.amount())
+                    + " || "
+                    + decimalFormatter.format(balance);
+        }
+        return lineToPrint;
     }
 }

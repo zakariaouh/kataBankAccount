@@ -11,7 +11,12 @@ public class Transaction {
         this.date = date;
         this.amount = amount;
     }
-
+    public boolean isDebit() {
+        return amount>=0;
+    }
+    public boolean isCredit() {
+        return amount<0;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,4 +38,6 @@ public class Transaction {
     public int amount() {
         return amount;
     }
+
+
 }
