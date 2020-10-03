@@ -17,6 +17,7 @@ public class ClockTest {
 
     private class TestClock extends Clock {
 
+
         @Override
         protected LocalDate today() {
             return LocalDate.of(2000, 12, 20);
