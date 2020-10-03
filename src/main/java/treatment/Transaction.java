@@ -3,8 +3,8 @@ package treatment;
 import java.util.Objects;
 
 public class Transaction {
-    private String date;
-    private int amount;
+    private final String date;
+    private final int amount;
 
     public Transaction(String date, int amount) {
 

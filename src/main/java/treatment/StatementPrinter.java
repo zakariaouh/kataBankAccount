@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class StatementPrinter {
-    private Console console;
+    private final Console console;
     public static final String HEADER = "Date || Credit || Debit || Balance";
 
 
@@ -17,8 +17,8 @@ public class StatementPrinter {
 
     public void print(List<Transaction> transactions) {
 
-       //Sort transactions in chronological order
-        Collections.sort(transactions, new TransactionDateComparator());
+        //Sort transactions in chronological order
+        transactions.sort(new TransactionDateComparator());
 
         List<StatementLine> statementLines = getStatementLines(transactions);
 
@@ -39,10 +39,10 @@ public class StatementPrinter {
 
     private List<StatementLine> getStatementLines(List<Transaction> transactions) {
         AtomicInteger runningBalance = new AtomicInteger(0);
-        List<StatementLine> statementLines = transactions.stream()
+        return transactions.stream()
                 .map(transaction -> statementLine(transaction, runningBalance))
                 .collect(Collectors.toList());
-        return statementLines;
+
     }
 
     private StatementLine statementLine(Transaction transaction, AtomicInteger runningBalance) {

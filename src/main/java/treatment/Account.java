@@ -3,8 +3,8 @@ package treatment;
 public class Account {
 
 
-    private TransactionRepository transactionRepository;
-    private StatementPrinter statementPrinter;
+    private final TransactionRepository transactionRepository;
+    private final StatementPrinter statementPrinter;
 
     public Account(TransactionRepository transactionRepository, StatementPrinter statementPrinter) {
 

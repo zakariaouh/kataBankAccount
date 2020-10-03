@@ -5,9 +5,9 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 public class StatementLine {
-    private DecimalFormat decimalFormatter = new DecimalFormat("#.00", DecimalFormatSymbols.getInstance(Locale.US));
+    private final DecimalFormat decimalFormatter = new DecimalFormat("#.00", DecimalFormatSymbols.getInstance(Locale.US));
     private Transaction transaction;
-    private int balance;
+    private final int balance;
 
     public StatementLine(Transaction transaction, int balance) {
 

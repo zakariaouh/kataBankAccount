@@ -19,7 +19,7 @@ public class AccountTest {
     TransactionRepository transactionRepository;
     @Mock
     StatementPrinter statementPrinter;
-    private int ANY_AMOUNT = 500;
+    private final int ANY_AMOUNT = 500;
 
     @Before
     public void setUp() {
