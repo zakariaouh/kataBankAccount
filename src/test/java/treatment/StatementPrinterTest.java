@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
@@ -15,7 +16,7 @@ public class StatementPrinterTest {
 
     @Mock
     Console console;
-    private static final List<Transaction> NO_TRANSACTIONS = null;
+    private static final List<Transaction> NO_TRANSACTIONS = Collections.EMPTY_LIST;
     public static final String HEADER = "Date || Credit || Debit || Balance";
 
     @Test
@@ -39,6 +40,8 @@ public class StatementPrinterTest {
         verify(console).printLine("15/01/2020 || 700.00 || || 1400.00");
         verify(console).printLine("15/01/2020 || 700.00 || || 700.00");
     }
+
+
 
 
 }
