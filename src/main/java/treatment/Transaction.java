@@ -1,29 +1,33 @@
 package treatment;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Transaction {
     private final String date;
-    private final int amount;
+    private final BigDecimal amount;
 
-    public Transaction(String date, int amount) {
+    public Transaction(String date, BigDecimal amount) {
 
         this.date = date;
         this.amount = amount;
     }
+
     public boolean isDebit() {
-        return amount>=0;
+        return amount.signum() != -1;
     }
+
     public boolean isCredit() {
-        return amount<0;
+        return amount.signum() == -1;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
-        return amount == that.amount &&
-                Objects.equals(date, that.date);
+        return Objects.equals(date, that.date) &&
+                Objects.equals(amount, that.amount);
     }
 
     @Override
@@ -35,7 +39,7 @@ public class Transaction {
         return date;
     }
 
-    public int amount() {
+    public BigDecimal amount() {
         return amount;
     }
 

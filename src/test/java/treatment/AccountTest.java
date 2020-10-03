@@ -1,48 +1,49 @@
 package treatment;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import mockito.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
-@RunWith(MockitoJUnitRunner.class)
-public class AccountTest {
+@ExtendWith(MockitoExtension.class)
+class AccountTest {
     private Account account;
     @Mock
     TransactionRepository transactionRepository;
     @Mock
     StatementPrinter statementPrinter;
-    private final int ANY_AMOUNT = 500;
+    private final BigDecimal ANY_AMOUNT = new BigDecimal(500);
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
-    public void accountDepositShouldRecordATransactionWithTheSameAmount() {
+    void accountDepositShouldRecordATransactionWithTheSameAmount() {
         account.deposit(ANY_AMOUNT);
         verify(transactionRepository).recode(ANY_AMOUNT);
 
     }
 
     @Test
-    public void accountWithdrawShouldRecordATransactionWithTheMinusAmount() {
+    void accountWithdrawShouldRecordATransactionWithTheMinusAmount() {
         account.withdraw(ANY_AMOUNT);
-        verify(transactionRepository).recode(-ANY_AMOUNT);
+        verify(transactionRepository).recode(ANY_AMOUNT.negate());
 
     }
 
     @Test
-    public void accountPrintStatementShouldCallThePrinterWithAllAccountTransactions() {
-        List<Transaction> transactions = Collections.singletonList(new Transaction(null, 100));
+    void accountPrintStatementShouldCallThePrinterWithAllAccountTransactions() {
+        List<Transaction> transactions = Collections.singletonList(new Transaction(null, new BigDecimal(100)));
         given(transactionRepository.getAllTransaction()).willReturn(transactions);
         account.printStatement();
         verify(statementPrinter).print(transactions);

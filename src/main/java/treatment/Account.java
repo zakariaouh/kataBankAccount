@@ -1,5 +1,7 @@
 package treatment;
 
+import java.math.BigDecimal;
+
 public class Account {
 
 
@@ -12,12 +14,12 @@ public class Account {
         this.statementPrinter = statementPrinter;
     }
 
-    public void deposit(int amount) {
+    public void deposit(BigDecimal amount) {
         transactionRepository.recode(amount);
     }
 
-    public void withdraw(int amount) {
-        transactionRepository.recode(-amount);
+    public void withdraw(BigDecimal amount) {
+        transactionRepository.recode(amount.negate());
 
     }
 

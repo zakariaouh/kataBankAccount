@@ -1,12 +1,13 @@
 package treatment;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import mockito.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,31 +15,31 @@ import java.util.List;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 
-@RunWith(MockitoJUnitRunner.class)
-public class StatementPrinterTest {
+@ExtendWith(MockitoExtension.class)
+class StatementPrinterTest {
 
     @Mock
     Console console;
-    private static final List NO_TRANSACTIONS = Collections.EMPTY_LIST;
+    private static final List<Transaction> NO_TRANSACTIONS = Collections.emptyList();
     public static final String HEADER = "Date || Credit || Debit || Balance";
     private StatementPrinter statementPrinter;
 
-    @Before
-    public void setUp(){
-         statementPrinter = new StatementPrinter(console);
+    @BeforeEach
+    public void setUp() {
+        statementPrinter = new StatementPrinter(console);
     }
 
     @Test
-    public void itShouldAlwaysPrintTheHeader() {
+    void itShouldAlwaysPrintTheHeader() {
 
         statementPrinter.print(NO_TRANSACTIONS);
         verify(console).printLine(HEADER);
     }
 
     @Test
-    public void itShouldPrintDepositTransactionInCredit() {
-        Transaction deposit1 = new Transaction("15/01/2020", 700);
-        Transaction deposit2 = new Transaction("15/01/2020", 700);
+    void itShouldPrintDepositTransactionInCredit() {
+        Transaction deposit1 = new Transaction("15/01/2020", new BigDecimal(700));
+        Transaction deposit2 = new Transaction("15/01/2020", new BigDecimal(700));
         List<Transaction> transactions = Arrays.asList(deposit1, deposit2);
 
         StatementPrinter statementPrinter = getStatementPrinter();
@@ -54,9 +55,9 @@ public class StatementPrinterTest {
     }
 
     @Test
-    public void itrShouldPrintWithdrawTransactionInDebit() {
-        Transaction debit1 = new Transaction("15/01/2020", -700);
-        Transaction debit2 = new Transaction("15/01/2020", -700);
+    void itrShouldPrintWithdrawTransactionInDebit() {
+        Transaction debit1 = new Transaction("15/01/2020", new BigDecimal(-700));
+        Transaction debit2 = new Transaction("15/01/2020", new BigDecimal(-700));
         List<Transaction> transactions = Arrays.asList(debit1, debit2);
 
         statementPrinter.print(transactions);
@@ -67,13 +68,13 @@ public class StatementPrinterTest {
     }
 
     @Test
-    public void itShouldPrintTransactionsInReverseChronologicalOrder() {
-        Transaction debit1 = new Transaction("15/01/2020", 1000);
-        Transaction credit = new Transaction("17/01/2020", -500);
-        Transaction debit2 = new Transaction("18/01/2020", 700);
-        List<Transaction> transactions = Arrays.asList(credit,debit1,debit2);
+    void itShouldPrintTransactionsInReverseChronologicalOrder() {
+        Transaction debit1 = new Transaction("15/01/2020", new BigDecimal(1000));
+        Transaction credit = new Transaction("17/01/2020", new BigDecimal(-500));
+        Transaction debit2 = new Transaction("18/01/2020", new BigDecimal(700));
+        List<Transaction> transactions = Arrays.asList(credit, debit1, debit2);
 
-       
+
         statementPrinter.print(transactions);
 
         InOrder inorder = inOrder(console);
@@ -83,3 +84,5 @@ public class StatementPrinterTest {
         inorder.verify(console).printLine("15/01/2020 || 1000.00 || || 1000.00");
     }
 }
+
+

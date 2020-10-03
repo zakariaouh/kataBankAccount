@@ -1,15 +1,16 @@
 package treatment;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 public class StatementLine {
     private final DecimalFormat decimalFormatter = new DecimalFormat("#.00", DecimalFormatSymbols.getInstance(Locale.US));
-    private Transaction transaction;
-    private final int balance;
+    private final Transaction transaction;
+    private final BigDecimal balance;
 
-    public StatementLine(Transaction transaction, int balance) {
+    public StatementLine(Transaction transaction, BigDecimal balance) {
 
         this.transaction = transaction;
         this.balance = balance;

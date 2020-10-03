@@ -1,7 +1,7 @@
 # Bank account kata
 
-- Developped using TDD  
-- You can start by executing tests in BanKataApplication.java or tests  
+- Developed using TDD   
+- You can start by executing tests or BanKataApplication.java
 
 Think of your personal bank account experience When in doubt, go for the simplest solution 
  
@@ -28,5 +28,9 @@ In order to check my operations
 As a bank client   
 I want to see the history (operation, date, amount, balance)  of my operations  
 
-#### Not yet realized
-- everything :-) I will start with an acceptance test
+#### Please note
+- Prohibiting withdrawal with a negative amount is a management rule not present in Kata, so I did not implement it.
+- I created my own `Clock` to have full control of the time, that's why I chose to use a String date, I can maybe change it to my one `Date`, but for now String do the Job.
+
+#### Not released yet
+- Rename the `Account` class to  `AccountManager`  then the account manager creates accounts on demand.

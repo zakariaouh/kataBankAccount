@@ -1,38 +1,38 @@
 package treatment;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import mockito.MockitoExtension;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 
-@RunWith(MockitoJUnitRunner.class)
-public class TransactionRepositoryTest {
+@ExtendWith(MockitoExtension.class)
+class TransactionRepositoryTest {
     @Mock
     Clock clock;
-    private static final int ANY_AMOUNT = 500;
+    private static final BigDecimal ANY_AMOUNT = new BigDecimal(500);
     private static final String TODAY = "20/11/2020";
     private TransactionRepository transactionRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         transactionRepository = new TransactionRepository(clock);
     }
 
     @Test
-    public void transactionRepositoryShouldRecordTransaction() {
+    void transactionRepositoryShouldRecordTransaction() {
         given(clock.currentDayAsString()).willReturn(TODAY);
 
         transactionRepository.recode(ANY_AMOUNT);
 
         List<Transaction> allTransaction = transactionRepository.getAllTransaction();
-        assertThat(allTransaction.size(), is(1));
-        assertThat(allTransaction.get(0), is(new Transaction(TODAY, ANY_AMOUNT)));
+        Assertions.assertEquals(1, allTransaction.size());
+        Assertions.assertEquals(new Transaction(TODAY, ANY_AMOUNT), allTransaction.get(0));
     }
 }

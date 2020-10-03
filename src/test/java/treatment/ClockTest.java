@@ -1,18 +1,16 @@
 package treatment;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.hamcrest.CoreMatchers.is;
-
-public class ClockTest {
+class ClockTest {
     @Test
-    public void currentDateShouldReturnDateInDDMMYYYYFormat() {
+    void currentDateShouldReturnDateInDDMMYYYYFormat() {
         Clock clock = new TestClock();
         String date = clock.currentDayAsString();
-        Assert.assertThat(date, is("20/12/2000"));
+        Assertions.assertEquals("20/12/2000", date);
     }
 
     private class TestClock extends Clock {

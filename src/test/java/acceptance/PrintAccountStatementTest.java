@@ -1,18 +1,20 @@
 package acceptance;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import mockito.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 import treatment.*;
+
+import java.math.BigDecimal;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
-@RunWith(MockitoJUnitRunner.class)
-public class PrintAccountStatementTest {
+@ExtendWith(MockitoExtension.class)
+class PrintAccountStatementTest {
 
     @Mock
     Console console;
@@ -20,7 +22,7 @@ public class PrintAccountStatementTest {
     Clock clock;
     private Account account;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         TransactionRepository transactionRepository = new TransactionRepository(clock);
         StatementPrinter statementPrinter = new StatementPrinter(console);
@@ -28,12 +30,12 @@ public class PrintAccountStatementTest {
     }
 
     @Test
-    public void printingStatementIncludingDepositAndWithdrawal() {
-        given(clock.currentDayAsString()).willReturn("05/01/2020","10/01/2020","15/01/2020");
+    void printingStatementIncludingDepositAndWithdrawal() {
+        given(clock.currentDayAsString()).willReturn("05/01/2020", "10/01/2020", "15/01/2020");
 
-        account.deposit(500);
-        account.deposit(2000);
-        account.withdraw(700);
+        account.deposit(new BigDecimal(500));
+        account.deposit(new BigDecimal(2000));
+        account.withdraw(new BigDecimal(700));
         account.printStatement();
 
         InOrder inorder = inOrder(console);

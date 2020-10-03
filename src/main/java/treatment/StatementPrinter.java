@@ -1,9 +1,10 @@
 package treatment;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class StatementPrinter {
@@ -45,15 +46,19 @@ public class StatementPrinter {
 
 
     private List<StatementLine> getStatementLines(List<Transaction> transactions) {
-        AtomicInteger runningBalance = new AtomicInteger(0);
+        AtomicReference<BigDecimal> runningBalance = new AtomicReference<>();
+        runningBalance.set(BigDecimal.ZERO);
         return transactions.stream()
                 .map(transaction -> statementLine(transaction, runningBalance))
                 .collect(Collectors.toList());
 
     }
 
-    private StatementLine statementLine(Transaction transaction, AtomicInteger runningBalance) {
-        return new StatementLine(transaction, runningBalance.addAndGet(transaction.amount()));
+    private StatementLine statementLine(Transaction transaction, AtomicReference<BigDecimal> runningBalance) {
+        return new StatementLine(transaction,
+                runningBalance.accumulateAndGet(transaction.amount(),
+                        BigDecimal::add));
+
     }
 
 
