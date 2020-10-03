@@ -1,5 +1,6 @@
 package treatment;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,13 +18,19 @@ public class StatementPrinter {
 
     public void print(List<Transaction> transactions) {
 
-        //Sort transactions in chronological order
-        transactions.sort(new TransactionDateComparator());
 
-        List<StatementLine> statementLines = getStatementLines(transactions);
+        List<Transaction> sortedTransactions = sortTransactionsInChronologicalOrder(transactions);
+
+        List<StatementLine> statementLines = getStatementLines(sortedTransactions);
 
         printTransactionsInReverseChronologicalOrder(statementLines);
 
+    }
+
+    private List<Transaction> sortTransactionsInChronologicalOrder(List<Transaction> transactions) {
+        List<Transaction> copyOfTransactions = new ArrayList<>(transactions);
+        copyOfTransactions.sort(new TransactionDateComparator());
+        return copyOfTransactions;
     }
 
     private void printTransactionsInReverseChronologicalOrder(List<StatementLine> statementLines) {

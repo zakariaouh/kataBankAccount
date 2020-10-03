@@ -1,7 +1,7 @@
 # Bank account kata
 
 - Developped using TDD  
-- You can start by executing tests in Main.java or tests  
+- You can start by executing tests in BanKataApplication.java or tests  
 
 Think of your personal bank account experience When in doubt, go for the simplest solution 
  

@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import treatment.*;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,14 +22,15 @@ public class PrintAccountStatementTest {
 
     @Before
     public void setUp() {
-        TransactionRepository transactionRepository=new TransactionRepository(clock);
-        StatementPrinter statementPrinter =new StatementPrinter(console);
+        TransactionRepository transactionRepository = new TransactionRepository(clock);
+        StatementPrinter statementPrinter = new StatementPrinter(console);
         account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test
     public void printingStatementIncludingDepositAndWithdrawal() {
-      //TODO given(clock.currentDay()).willReturn(a day)
+        given(clock.currentDayAsString()).willReturn("05/01/2020","10/01/2020","15/01/2020");
+
         account.deposit(500);
         account.deposit(2000);
         account.withdraw(700);
