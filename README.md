@@ -30,7 +30,7 @@ I want to see the history (operation, date, amount, balance)  of my operations
 
 #### Please note
 - Prohibiting withdrawal with a negative amount is a management rule not present in Kata, so I did not implement it.
-- I created my own `Clock` to have full control of the time, that's why I chose to use a String date, I can maybe change it to my one `Date`, but for now String do the Job.
+- I created my own `Clock` to have full control of the time, that's why I chose to use a String date, I can maybe change it to my own `Date`, but for now String do the Job.
 
 #### Not released yet
 - Rename the `Account` class to  `AccountManager`  then the account manager creates accounts on demand.
