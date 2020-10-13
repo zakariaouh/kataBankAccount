@@ -1,10 +1,11 @@
 package treatment;
 
-import mockito.MockitoExtension;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -30,14 +31,14 @@ class AccountTest {
     @Test
     void accountDepositShouldRecordATransactionWithTheSameAmount() {
         account.deposit(ANY_AMOUNT);
-        verify(transactionRepository).recode(ANY_AMOUNT);
+        verify(transactionRepository).record(ANY_AMOUNT);
 
     }
 
     @Test
     void accountWithdrawShouldRecordATransactionWithTheMinusAmount() {
         account.withdraw(ANY_AMOUNT);
-        verify(transactionRepository).recode(ANY_AMOUNT.negate());
+        verify(transactionRepository).record(ANY_AMOUNT.negate());
 
     }
 
