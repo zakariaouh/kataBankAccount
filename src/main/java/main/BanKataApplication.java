@@ -1,6 +1,9 @@
 package main;
 
 import treatment.*;
+import treatment.statment.Console;
+import treatment.statment.StatementPrinter;
+import treatment.transactions.TransactionRepository;
 
 import java.math.BigDecimal;
 

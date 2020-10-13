@@ -1,4 +1,7 @@
-package treatment;
+package treatment.statment;
+
+import treatment.transactions.Transaction;
+import treatment.transactions.TransactionDateComparator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

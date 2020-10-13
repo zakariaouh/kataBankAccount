@@ -1,4 +1,6 @@
-package treatment;
+package treatment.statment;
+
+import treatment.transactions.Transaction;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

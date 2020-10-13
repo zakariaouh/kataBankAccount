@@ -1,5 +1,8 @@
 package treatment;
 
+import treatment.statment.StatementPrinter;
+import treatment.transactions.TransactionRepository;
+
 import java.math.BigDecimal;
 
 public class Account {
