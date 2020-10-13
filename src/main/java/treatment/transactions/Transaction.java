@@ -1,4 +1,4 @@
-package treatment;
+package treatment.transactions;
 
 import java.math.BigDecimal;
 import java.util.Objects;

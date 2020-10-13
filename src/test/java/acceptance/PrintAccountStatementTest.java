@@ -8,6 +8,9 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import treatment.*;
+import treatment.statment.Console;
+import treatment.statment.StatementPrinter;
+import treatment.transactions.TransactionRepository;
 
 import java.math.BigDecimal;
 

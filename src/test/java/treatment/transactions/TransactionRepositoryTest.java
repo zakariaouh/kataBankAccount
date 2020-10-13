@@ -1,4 +1,4 @@
-package treatment;
+package treatment.transactions;
 
 
 import org.junit.jupiter.api.Assertions;
@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import treatment.Clock;
+import treatment.transactions.Transaction;
+import treatment.transactions.TransactionRepository;
 
 import java.math.BigDecimal;
 import java.util.List;

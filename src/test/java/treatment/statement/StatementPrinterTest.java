@@ -1,4 +1,4 @@
-package treatment;
+package treatment.statement;
 
 
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import treatment.statment.Console;
+import treatment.statment.StatementPrinter;
+import treatment.transactions.Transaction;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

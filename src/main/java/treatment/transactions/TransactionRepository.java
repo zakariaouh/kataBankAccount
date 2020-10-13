@@ -1,4 +1,6 @@
-package treatment;
+package treatment.transactions;
+
+import treatment.Clock;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

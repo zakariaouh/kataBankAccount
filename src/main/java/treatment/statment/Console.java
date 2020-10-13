@@ -1,4 +1,4 @@
-package treatment;
+package treatment.statment;
 
 public class Console {
     public void printLine(String text) {
