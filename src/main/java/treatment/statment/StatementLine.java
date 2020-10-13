@@ -1,15 +1,13 @@
 package treatment.statment;
 
+import treatment.tools.AmountParser;
 import treatment.tools.Clock;
 import treatment.transactions.Transaction;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 
 public class StatementLine {
-    private final DecimalFormat decimalFormatter = new DecimalFormat("#.00", DecimalFormatSymbols.getInstance(Locale.US));
+
     private final Transaction transaction;
     private final BigDecimal balance;
 
@@ -24,16 +22,16 @@ public class StatementLine {
         if (transaction.isDebit()) {
             lineToPrint = Clock.getDateAsString(transaction.date())
                     + " || "
-                    + decimalFormatter.format(transaction.amount())
+                    + AmountParser.pars(transaction.amount())
                     + " || || "
-                    + decimalFormatter.format(balance);
+                    + AmountParser.pars(balance);
         }
         if (transaction.isCredit()) {
             lineToPrint = Clock.getDateAsString(transaction.date())
                     + " || || "
-                    + decimalFormatter.format(transaction.amount())
+                    + AmountParser.pars(transaction.amount())
                     + " || "
-                    + decimalFormatter.format(balance);
+                    + AmountParser.pars(balance);
         }
         return lineToPrint;
     }
