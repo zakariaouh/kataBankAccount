@@ -1,4 +1,4 @@
-package treatment;
+package treatment.tools;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,16 +7,12 @@ public class Clock {
     private static final DateTimeFormatter DD_MM_YYYY = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
-    public String currentDayAsString() {
-        return today().format(DD_MM_YYYY);
+    public static String getDateAsString(LocalDate date) {
+        return date.format(DD_MM_YYYY);
     }
 
-    protected LocalDate today() {
+    public LocalDate today() {
         return LocalDate.now();
-    }
-    public LocalDate stringToDate(String date){
-        return LocalDate.parse(date,DD_MM_YYYY);
-
     }
 
 

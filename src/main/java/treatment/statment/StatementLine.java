@@ -1,5 +1,6 @@
 package treatment.statment;
 
+import treatment.tools.Clock;
 import treatment.transactions.Transaction;
 
 import java.math.BigDecimal;
@@ -21,14 +22,14 @@ public class StatementLine {
     public String format() {
         String lineToPrint = "";
         if (transaction.isDebit()) {
-            lineToPrint = transaction.date()
+            lineToPrint = Clock.getDateAsString(transaction.date())
                     + " || "
                     + decimalFormatter.format(transaction.amount())
                     + " || || "
                     + decimalFormatter.format(balance);
         }
         if (transaction.isCredit()) {
-            lineToPrint = transaction.date()
+            lineToPrint = Clock.getDateAsString(transaction.date())
                     + " || || "
                     + decimalFormatter.format(transaction.amount())
                     + " || "

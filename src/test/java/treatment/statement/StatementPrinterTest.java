@@ -12,6 +12,7 @@ import treatment.statment.StatementPrinter;
 import treatment.transactions.Transaction;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -42,8 +43,8 @@ class StatementPrinterTest {
 
     @Test
     void itShouldPrintDepositTransactionInCredit() {
-        Transaction deposit1 = new Transaction("15/01/2020", new BigDecimal(700));
-        Transaction deposit2 = new Transaction("15/01/2020", new BigDecimal(700));
+        Transaction deposit1 = new Transaction(LocalDate.of(2020,01,15), new BigDecimal(700));
+        Transaction deposit2 = new Transaction(LocalDate.of(2020,01,15), new BigDecimal(700));
         List<Transaction> transactions = Arrays.asList(deposit1, deposit2);
 
         StatementPrinter statementPrinter = getStatementPrinter();
@@ -60,8 +61,8 @@ class StatementPrinterTest {
 
     @Test
     void itrShouldPrintWithdrawTransactionInDebit() {
-        Transaction debit1 = new Transaction("15/01/2020", new BigDecimal(-700));
-        Transaction debit2 = new Transaction("15/01/2020", new BigDecimal(-700));
+        Transaction debit1 = new Transaction(LocalDate.of(2020,01,15), new BigDecimal(-700));
+        Transaction debit2 = new Transaction(LocalDate.of(2020,01,15), new BigDecimal(-700));
         List<Transaction> transactions = Arrays.asList(debit1, debit2);
 
         statementPrinter.print(transactions);
@@ -73,9 +74,9 @@ class StatementPrinterTest {
 
     @Test
     void itShouldPrintTransactionsInReverseChronologicalOrder() {
-        Transaction debit1 = new Transaction("15/01/2020", new BigDecimal(1000));
-        Transaction credit = new Transaction("17/01/2020", new BigDecimal(-500));
-        Transaction debit2 = new Transaction("18/01/2020", new BigDecimal(700));
+        Transaction debit1 = new Transaction(LocalDate.of(2020,01,15), new BigDecimal(1000));
+        Transaction credit = new Transaction(LocalDate.of(2020,01,17), new BigDecimal(-500));
+        Transaction debit2 = new Transaction(LocalDate.of(2020,01,18), new BigDecimal(700));
         List<Transaction> transactions = Arrays.asList(credit, debit1, debit2);
 
 

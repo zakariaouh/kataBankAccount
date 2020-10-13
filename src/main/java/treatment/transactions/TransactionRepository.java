@@ -1,6 +1,6 @@
 package treatment.transactions;
 
-import treatment.Clock;
+import treatment.tools.Clock;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class TransactionRepository {
     }
 
     public void record(BigDecimal amount) {
-        transactions.add(new Transaction(clock.currentDayAsString(), amount));
+        transactions.add(new Transaction(clock.today(), amount));
     }
 
     public List<Transaction> getAllTransaction() {
