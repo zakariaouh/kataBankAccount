@@ -15,11 +15,11 @@ public class Account {
     }
 
     public void deposit(BigDecimal amount) {
-        transactionRepository.recode(amount);
+        transactionRepository.record(amount);
     }
 
     public void withdraw(BigDecimal amount) {
-        transactionRepository.recode(amount.negate());
+        transactionRepository.record(amount.negate());
 
     }
 

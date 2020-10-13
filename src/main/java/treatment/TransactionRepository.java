@@ -14,7 +14,7 @@ public class TransactionRepository {
         this.clock = clock;
     }
 
-    public void recode(BigDecimal amount) {
+    public void record(BigDecimal amount) {
         transactions.add(new Transaction(clock.currentDayAsString(), amount));
     }
 

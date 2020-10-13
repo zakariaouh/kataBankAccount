@@ -1,11 +1,12 @@
 package treatment;
 
-import mockito.MockitoExtension;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -29,7 +30,7 @@ class TransactionRepositoryTest {
     void transactionRepositoryShouldRecordTransaction() {
         given(clock.currentDayAsString()).willReturn(TODAY);
 
-        transactionRepository.recode(ANY_AMOUNT);
+        transactionRepository.record(ANY_AMOUNT);
 
         List<Transaction> allTransaction = transactionRepository.getAllTransaction();
         Assertions.assertEquals(1, allTransaction.size());
