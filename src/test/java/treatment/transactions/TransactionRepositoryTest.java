@@ -7,11 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import treatment.Clock;
-import treatment.transactions.Transaction;
-import treatment.transactions.TransactionRepository;
+import treatment.tools.Clock;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
@@ -21,7 +20,7 @@ class TransactionRepositoryTest {
     @Mock
     Clock clock;
     private static final BigDecimal ANY_AMOUNT = new BigDecimal(500);
-    private static final String TODAY = "20/11/2020";
+    private static final LocalDate TODAY = LocalDate.of(2020,11,20);
     private TransactionRepository transactionRepository;
 
     @BeforeEach
@@ -31,7 +30,7 @@ class TransactionRepositoryTest {
 
     @Test
     void transactionRepositoryShouldRecordTransaction() {
-        given(clock.currentDayAsString()).willReturn(TODAY);
+        given(clock.today()).willReturn(TODAY);
 
         transactionRepository.record(ANY_AMOUNT);
 

@@ -1,14 +1,15 @@
 package treatment.transactions;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Transaction {
-    private final String date;
+    private final LocalDate date;
     private final BigDecimal amount;
 
-    public Transaction(String date, BigDecimal amount) {
-
+    public Transaction(LocalDate date, BigDecimal amount) {
         this.date = date;
         this.amount = amount;
     }
@@ -35,7 +36,7 @@ public class Transaction {
         return Objects.hash(date, amount);
     }
 
-    public String date() {
+    public LocalDate date() {
         return date;
     }
 

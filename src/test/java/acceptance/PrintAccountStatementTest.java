@@ -10,9 +10,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import treatment.*;
 import treatment.statment.Console;
 import treatment.statment.StatementPrinter;
+import treatment.tools.Clock;
 import treatment.transactions.TransactionRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
@@ -35,7 +37,10 @@ class PrintAccountStatementTest {
 
     @Test
     void printingStatementIncludingDepositAndWithdrawal() {
-        given(clock.currentDayAsString()).willReturn("05/01/2020", "10/01/2020", "15/01/2020");
+        given(clock.today()).willReturn(
+                LocalDate.of(2020,01,05),
+                LocalDate.of(2020,01,10),
+                LocalDate.of(2020,01,15));
 
         account.deposit(new BigDecimal(500));
         account.deposit(new BigDecimal(2000));
